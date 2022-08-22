@@ -1,0 +1,69 @@
+<div class="movie-card">
+    <div class="container">
+        <a href="#"><img src={{getImage()}} alt="cover" class="cover" /></a>
+        <div class="hero" [ngStyle]="{'--featured-image': getUrl()}"> 
+            <div class="details">
+                <div class="details_highlight">
+                <div class="title1">
+                    {{this.movie.title}}
+                    <span>{{movie.adult=='true'?'Adults only':'All ages'}}</span>
+                    <span>{{this.movie.original_language}}</span>
+                </div>
+                <div class="title2">{{this.movie.tagline}}</div>    
+                <fieldset class="rating">
+                    <label class = "full" id="star5" title="Awesome - 5 stars" 
+                    [style.color]="+this.movie.vote_average > 9 ? '#FFD700' : '#ddd'"></label>
+                    <label class="half" id="star4half" title="Pretty good - 4.5 stars"
+                    [style.color]="+this.movie.vote_average > 8 ? '#FFD700' : '#ddd'"></label>
+                    <label class = "full" id="star4" title="Pretty good - 4 stars"
+                    [style.color]="+this.movie.vote_average > 7 ? '#FFD700' : '#ddd'"></label>
+                    <label class="half" id="star3half" title="Meh - 3.5 stars"
+                    [style.color]="+this.movie.vote_average > 6 ? '#FFD700' : '#ddd'"></label>
+                    <label class = "full" id="star3" title="Meh - 3 stars"
+                    [style.color]="+this.movie.vote_average > 5 ? '#FFD700' : '#ddd'"></label>
+                    <label class="half" id="star2half" title="Kinda bad - 2.5 stars"
+                    [style.color]="+this.movie.vote_average > 4 ? '#FFD700' : '#ddd'"></label>
+                    <label class = "full" id="star2" title="Kinda bad - 2 stars"
+                    [style.color]="+this.movie.vote_average > 3 ? '#FFD700' : '#ddd'"></label>
+                    <label class="half" id="star1half" title="Meh - 1.5 stars"
+                    [style.color]="+this.movie.vote_average > 2 ? '#FFD700' : '#ddd'"></label>
+                    <label class = "full" id="star1" title="Sucks big time - 1 star"
+                    [style.color]="+this.movie.vote_average > 1 ? '#FFD700' : '#ddd'"></label>
+                    <label class="half" id="starhalf" title="Sucks big time - 0.5 stars"
+                    [style.color]="+this.movie.vote_average > 0 ? '#FFD700' : '#ddd'"></label>
+                </fieldset>
+                <span class="votes">{{this.movie.vote_average}}</span>
+                <span class="likes">{{this.movie.vote_count}} votes</span>
+                </div>
+            </div> <!-- end details -->
+        </div> <!-- end hero -->
+        <div class="description">
+            <div class="column1">
+                <span class="tag" *ngFor="let genre of getGenres()">{{genre}}</span>
+            </div> <!-- end column1 -->
+            <div class="column2">
+                <p>{{this.movie.overview}}</p>
+                <div class = "text_full">
+                    <span class="text_label">Release Date : </span> 
+                    <span class="text_value">{{this.movie.release_date}} </span>
+                </div>
+                <div class = "text_full">
+                    <span class="text_label">Budget &nbsp;&nbsp;&nbsp;&nbsp;: </span> 
+                    <span class="text_value">{{this.movie.budget}} $</span>
+                </div>
+                <div class="text_full">
+                    <span class="text_label">Revenue &nbsp;: </span> 
+                    <span class="text_value">{{this.movie.revenue}} $</span>
+                </div>
+                <div class="avatars">
+                    <div class = "avatars_text">Production Companies:-</div>
+                    <span *ngFor="let comp of this.movie.production_companies; let i = index">
+                    <a [attr.data-tooltip]="comp.name" data-placement="top">
+                    <img src={{getCompanyImage(i)}} alt={{comp.name}} />
+                    </a>
+                    </span>
+                </div> <!-- end avatars -->
+            </div> <!-- end column2 -->
+        </div> <!-- end description --> 
+    </div> <!-- end container -->
+</div> <!-- end movie-card -->

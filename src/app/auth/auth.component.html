@@ -1,0 +1,151 @@
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <div class="alert alert-danger" *ngIf="error">
+                <p>{{ error }}</p>
+            </div>
+            <div *ngIf="isLoading" style="text-align: center;">
+                <app-loading-spinner></app-loading-spinner>
+            </div>
+            <form [formGroup]="logininForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                    type="email"
+                    id="email"
+                    formControlName="email"
+                    class="form-control">
+                    <span
+                    *ngIf="!email?.valid && email?.touched"
+                    class="help-block">
+                        <span *ngIf="email?.errors?.['required']">
+                            Email is required!
+                        </span>
+                        <span *ngIf="email?.errors?.['email']">
+                            Please enter a valid email!
+                        </span>
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Password</label>
+                    <input
+                    type="password"
+                    id="password"
+                    formControlName="password"
+                    class="form-control">
+                    <span
+                    *ngIf="!password?.valid && password?.touched"
+                    class="help-block">
+                        <span *ngIf="password?.errors?.['required']">
+                            Password is required!
+                        </span>
+                        <span *ngIf="password?.errors?.['minlength']">
+                            Password minimum length is 8 characters!
+                        </span>
+                    </span>
+                </div>
+                <button
+                class="btn btn-primary"
+                type="submit"
+                [disabled]="!logininForm.valid">
+                    Log in
+                </button>
+            </form>
+        </div>
+    </div>
+</div> -->
+
+<section class="main">
+	<div class="layer">
+		<div class="bottom-grid">
+			<div class="logo">
+				<h1> <a [routerLink]="['/movies']"><span><fa-icon [icon]="faClapperboard" size="2x"></fa-icon></span> The Movie App</a></h1>
+			</div>
+		</div>
+		<div class="content-w3ls">
+			<div class="text-center icon">
+				<span><fa-icon [icon]="faClapperboard" [spin]="true" style="color:white" size="10x"></fa-icon></span>
+			</div>
+            <div class="alert alert-danger" *ngIf="error">
+                <p>{{ error }}</p>
+            </div>
+            <div *ngIf="isLoading" style="text-align: center;">
+                <app-loading-spinner></app-loading-spinner>
+            </div>
+			<div class="content-bottom">
+				<form [formGroup]="logininForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+					<div class="field-group">
+						<span aria-hidden="true"><fa-icon [icon]="faUser"></fa-icon></span>
+						<div class="wthree-field">
+                            <input
+                            type="email"
+                            id="email"
+                            placeholder="Email"
+                            formControlName="email"
+                            class="form-control">
+                            <span
+                            *ngIf="!email?.valid && email?.touched"
+                            class="alert alert-danger"
+                            style="font-size: 1em;background-color: red !important; padding: 0.5%; margin-left: 5%;"
+                            >
+                                <span *ngIf="email?.errors?.['required']">
+                                    Email is required!
+                                </span>
+                                <span *ngIf="email?.errors?.['email']">
+                                    Please enter a valid email!
+                                </span>
+                            </span>
+						</div>
+					</div>
+					<div class="field-group">
+						<span aria-hidden="true"><fa-icon [icon]="faLock"></fa-icon></span>
+						<div class="wthree-field">
+                            <input
+                            type="password"
+                            id="password"
+                            placeholder="Password"
+                            formControlName="password"
+                            class="form-control">
+                            <span
+                            *ngIf="!password?.valid && password?.touched"
+                            class="alert alert-danger"
+                            style="font-size: 1em;background-color: red !important; padding: 0.5%; margin-left: 5%;"
+                            >
+                                <span *ngIf="password?.errors?.['required']">
+                                    Password is required!
+                                </span>
+                                <span *ngIf="password?.errors?.['minlength']">
+                                    Password minimum length is 8 characters!
+                                </span>
+                            </span>
+						</div>
+					</div>
+                    <!-- <ul class="list-login">
+						<li class="switch-agileits">
+							<label class="switch">
+								<input type="checkbox">
+								<span class="slider round"></span>
+								keep Logged in
+							</label>
+						</li>
+						<li class="clearfix"></li>
+					</ul> -->
+					<div class="wthree-field">
+						<button
+                        class="btn btn-primary"
+                        type="submit"
+                        [disabled]="!logininForm.valid">
+                            Log in
+                        </button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="bottom-grid1">
+			<div class="copyright">
+				<p>© 2022 Sumerge. All rights reserved</p>
+			</div>
+		</div>
+    </div>
+</section>
+
