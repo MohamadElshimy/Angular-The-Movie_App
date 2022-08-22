@@ -8,7 +8,6 @@ import { Movie } from '../shared/movie.model';
 import { MoviesService } from '../services/movies.service';
 import { AuthService } from '../services/auth.service';
 
-
 @Component({
   selector: 'app-movies-catalog',
   templateUrl: './movies-catalog.component.html',
@@ -39,10 +38,6 @@ export class MoviesCatalogComponent implements OnInit {
       this.isFetchingMore = false;
     });
   }
-
-  // onViewDetails(id: number){
-  //   this.router.navigate(['/movies',id]);
-  // }
 
   onViewMore(){
     this.isFetchingMore = true;
