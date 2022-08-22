@@ -51,12 +51,12 @@ export class AuthComponent implements OnInit {
     let resData = this.authService.login(email, password);
 
     if (resData.authenticated){
-      console.log("Authenticated");
+      // console.log("Authenticated");
       this.isLoading = false;
       this.error = null!;
       this.router.navigate(['/movies']);
     }else{
-      console.log(resData.error);
+      // console.log(resData.error);
       this.error = resData.error!;
       this.isLoading = false;
     }

@@ -135,20 +135,33 @@
     width: inherit;
 }
 
-.view-more {
-    font-size: 250%;
-    display: flex;
-    justify-content: center;
-    margin: 1% auto;
-}
-
-.bottom-grid{
-  justify-content: space-between;
+.logo {
   display: block;
   position: relative;
   width: 330px;
   margin: 0em auto;
-  color:white; 
+  margin-top: 0;
+  padding-top: 0.5em;
+  padding-bottom: 1em;
   text-decoration:none;
-  margin-top: 1em;
+  color:white; 
+  justify-content: space-between;
+}
+
+.bottom-grid{
+  width:100%;
+  margin: 0 auto;
+  margin-top: 0;
+  background-color: black;
+  padding-bottom: 1.4em;
+}
+
+.logout {
+  font-size: 150%;
+  display: flex;
+  justify-content: center;
+  margin-left: auto; 
+  margin-right: 7%;
+  margin-top: -5.3%;
+  background-color: grey;
 }

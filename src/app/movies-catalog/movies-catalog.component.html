@@ -1,8 +1,13 @@
 <div class="container">
     <div class="bottom-grid">
-        <div class="logo">
+        <span class="logo">
             <h1><span><fa-icon [icon]="faClapperboard" size="2x"></fa-icon></span> The Movie App</h1>
-        </div>
+        </span>
+        <button
+        class="btn btn-primary logout" 
+        (click)="onLogOut()">
+            Log Out
+        </button>
     </div>
     <div class="movie_card" *ngFor="let movie of loadedMovies; let i = index" [routerLink]="['/movies', movie.id]">
         <div class="info_section">

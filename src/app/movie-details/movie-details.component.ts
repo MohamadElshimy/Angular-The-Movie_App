@@ -45,7 +45,7 @@ export class MovieDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    console.log(this.id);
+    // console.log(this.id);
     this.fetchMovieDetails(this.id);
   }
 
@@ -53,7 +53,7 @@ export class MovieDetailsComponent implements OnInit {
     this.moviesService.fetchMovieDetailsRequest(movie_id)
     .subscribe( responseData => {
       this.movie = responseData;
-      console.log(responseData);
+      // console.log(responseData);
     });
   }
 
@@ -63,7 +63,7 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   getImage(){
-    console.log(this.movie);
+    // console.log(this.movie);
     const urlString = this.movie.poster_path;
     return `${this.imageLinkPrefix}${urlString}`;
   }

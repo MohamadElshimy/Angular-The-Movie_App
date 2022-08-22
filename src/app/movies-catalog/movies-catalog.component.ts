@@ -6,6 +6,7 @@ import { faClapperboard } from '@fortawesome/free-solid-svg-icons';
 
 import { Movie } from '../shared/movie.model';
 import { MoviesService } from '../services/movies.service';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -21,7 +22,10 @@ export class MoviesCatalogComponent implements OnInit {
 
   faClapperboard = faClapperboard;
 
-  constructor(private http: HttpClient, private moviesService: MoviesService, private router: Router) { }
+  constructor(private http: HttpClient, 
+    private moviesService: MoviesService, 
+    private router: Router, 
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.fetchMovies(this.pageCounter);
@@ -62,6 +66,10 @@ export class MoviesCatalogComponent implements OnInit {
     }
     genres = genres.slice(0, -2);
     return genres;
+  }
+
+  onLogOut(){
+    this.authService.logout();
   }
 
   @HostListener('window:scroll', ['$event'])

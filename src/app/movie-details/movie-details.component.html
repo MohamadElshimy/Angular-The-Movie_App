@@ -1,5 +1,5 @@
 <div class="movie-card">
-    <div class="container">
+    <div class="container" *ngIf="this.movie && this.movie.poster_path">
         <a href="#"><img src={{getImage()}} alt="cover" class="cover" /></a>
         <div class="hero" [ngStyle]="{'--featured-image': getUrl()}"> 
             <div class="details">
@@ -67,3 +67,7 @@
         </div> <!-- end description --> 
     </div> <!-- end container -->
 </div> <!-- end movie-card -->
+
+<div class="loader" *ngIf="!this.movie || !this.movie.poster_path">
+    <app-loading-spinner></app-loading-spinner>
+</div>
