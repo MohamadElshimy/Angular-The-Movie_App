@@ -1,3 +1,16 @@
+export interface result {
+    id: string;
+    iso_639_1: string;
+    iso_3166_1: string;
+    key: string;
+    name: string;
+    official: string;
+    published_at: string;
+    site: string;
+    size: string;
+    type: string;
+}
+
 export interface MovieDetailed {
     adult: string;
     backdrop_path: string;
@@ -22,6 +35,7 @@ export interface MovieDetailed {
     tagline: string;
     title: string;
     video: string;
+    videos: {results: result[]};
     vote_average: string;
     vote_count: string;
 }

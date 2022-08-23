@@ -1,6 +1,6 @@
 <div class="movie-card">
     <div class="container" *ngIf="this.movie && this.movie.poster_path">
-        <a><img src={{getImage()}} alt="cover" class="cover" /></a>
+        <a href={{getVideoLink()}} target="_blank"><img src={{getImage()}} alt="cover" class="cover" /></a>
         <div class="hero" [ngStyle]="{'--featured-image': getUrl()}"> 
             <div class="details">
                 <div class="details_highlight">

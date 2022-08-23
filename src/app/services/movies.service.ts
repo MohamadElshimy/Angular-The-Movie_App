@@ -36,6 +36,8 @@ export class MoviesService {
     let searchParams = new HttpParams();
     searchParams = searchParams.append('api_key','029dea97c6491c890795a485b2ebdbc0');
     searchParams = searchParams.append('language','en-US');
+    searchParams = searchParams.append('append_to_response','videos');
+
     return this.http
       .get<MovieDetailed>(
         `https://api.themoviedb.org/3/movie/${movie_id}`,

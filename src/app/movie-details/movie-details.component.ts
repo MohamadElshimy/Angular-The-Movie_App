@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
+
 import { MoviesService } from '../services/movies.service';
 import { MovieDetailed } from '../shared/movie-detailed.model';
 
@@ -13,6 +15,9 @@ export class MovieDetailsComponent implements OnInit {
   id: string;
   movie: MovieDetailed;
   imageLinkPrefix = 'https://image.tmdb.org/t/p/w500';
+  videoLinkPrefix = 'https://www.youtube.com/watch?v=';
+
+  faPlay = faPlay;
 
   constructor(private route: ActivatedRoute, private moviesService: MoviesService) { }
 
@@ -25,6 +30,7 @@ export class MovieDetailsComponent implements OnInit {
     this.moviesService.fetchMovieDetailsRequest(movie_id)
     .subscribe( responseData => {
       this.movie = responseData;
+      console.log(responseData);
     });
   }
 
@@ -49,6 +55,11 @@ export class MovieDetailsComponent implements OnInit {
   getCompanyImage(index: number){
     const urlString = this.movie.production_companies[index].logo_path;
     return `${this.imageLinkPrefix}${urlString}`;
+  }
+
+  getVideoLink(): string{
+    const urlString = this.movie.videos.results[0].key;
+    return `${this.videoLinkPrefix}${urlString}`;
   }
 
 }
