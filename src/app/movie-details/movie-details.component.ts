@@ -30,7 +30,7 @@ export class MovieDetailsComponent implements OnInit {
     this.moviesService.fetchMovieDetailsRequest(movie_id)
     .subscribe( responseData => {
       this.movie = responseData;
-      console.log(responseData);
+      // console.log(responseData);
     });
   }
 
