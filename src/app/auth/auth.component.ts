@@ -28,6 +28,7 @@ export class AuthComponent implements OnInit {
     this.logininForm = new FormGroup({
       'email': new FormControl('', [Validators.required, Validators.email]),
       'password': new FormControl('', [Validators.required, Validators.minLength(8)]),
+      'remainLoggedin': new FormControl('')
     });
   }
 
@@ -45,34 +46,20 @@ export class AuthComponent implements OnInit {
     }
     const email = this.logininForm.value.email;
     const password = this.logininForm.value.password;
+    const remainLoggedin = this.logininForm.value.remainLoggedin;
 
     this.isLoading = true;
 
-    let resData = this.authService.login(email, password);
+    let resData = this.authService.login(email, password, remainLoggedin);
 
     if (resData.authenticated){
-      // console.log("Authenticated");
       this.isLoading = false;
       this.error = null!;
       this.router.navigate(['/movies']);
     }else{
-      // console.log(resData.error);
       this.error = resData.error!;
       this.isLoading = false;
     }
-
-    // authObs.subscribe(
-    //   resData => {
-    //     console.log(resData);
-    //     this.isLoading = false;
-    //     this.router.navigate(['/recipes']);
-    //   },
-    //   errorMessage => {
-    //     console.log(errorMessage);
-    //     this.error = errorMessage;
-    //     this.isLoading = false;
-    //   }
-    // );
 
     this.logininForm.reset();
   }

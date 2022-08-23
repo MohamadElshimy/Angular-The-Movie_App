@@ -69,9 +69,6 @@ export class MoviesCatalogComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
-    // if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-    //     console.log('reached bottom');
-    // }
     if (window.innerHeight + window.scrollY === document.body.scrollHeight) {
       console.log('bottom');
       this.onViewMore();

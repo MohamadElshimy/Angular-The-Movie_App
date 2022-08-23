@@ -12,40 +12,12 @@ import { MovieDetailed } from '../shared/movie-detailed.model';
 export class MovieDetailsComponent implements OnInit {
   id: string;
   movie: MovieDetailed;
-  // movie: MovieDetailed = {
-  //   adult: '',
-  //   backdrop_path: '/kXfqcdQKsToO0OUXHcrrNCHDBzO.jpg',
-  //   belongs_to_collection: '',
-  //   budget: '',
-  //   genres: [{id: '', name: ''}],
-  //   homepage: '',
-  //   id: '',
-  //   imdb_id: '',
-  //   original_language: '',
-  //   original_title: '',
-  //   overview: '',
-  //   popularity: '',
-  //   poster_path: 'q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg',
-  //   production_companies: [{id: '', logo_path: '', name: '', origin_country:''}],
-  //   production_countries: [{iso_3166_1: '', name: ''}],
-  //   release_date: '',
-  //   revenue: '',
-  //   runtime: '',
-  //   spoken_languages: [{english_name: '', iso_639_1: '', name: ''}],
-  //   status: '',
-  //   tagline: '',
-  //   title: '',
-  //   video: '',
-  //   vote_average: '',
-  //   vote_count: '',
-  // };
   imageLinkPrefix = 'https://image.tmdb.org/t/p/w500';
 
   constructor(private route: ActivatedRoute, private moviesService: MoviesService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    // console.log(this.id);
     this.fetchMovieDetails(this.id);
   }
 
@@ -53,7 +25,6 @@ export class MovieDetailsComponent implements OnInit {
     this.moviesService.fetchMovieDetailsRequest(movie_id)
     .subscribe( responseData => {
       this.movie = responseData;
-      // console.log(responseData);
     });
   }
 
@@ -63,7 +34,6 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   getImage(){
-    // console.log(this.movie);
     const urlString = this.movie.poster_path;
     return `${this.imageLinkPrefix}${urlString}`;
   }

@@ -40,7 +40,7 @@ export class AuthService {
 
   constructor(private router: Router) { }
 
-  login(email: string, password: string) : AuthResponseData {
+  login(email: string, password: string, remainLoggedin: any) : AuthResponseData {
 
     let authResponseData: AuthResponseData = {authenticated: false, error: "Unknown Error Occured"};
     let found = false;
@@ -52,8 +52,10 @@ export class AuthService {
           const expirationDate = new Date(new Date ().getTime() + expiresIn * 1000);
           const user = new User(email, this.generateToken(), expirationDate);
           this.user.next(user);
-          this.autoLogout(expiresIn * 1000);
-          localStorage.setItem('userSession',JSON.stringify(user));
+          if(remainLoggedin){
+            this.autoLogout(expiresIn * 1000);
+            localStorage.setItem('userSession',JSON.stringify(user));
+          }
         }else{
           authResponseData = {authenticated: false, error: "Incorrect Password!"};
         }
@@ -112,7 +114,6 @@ export class AuthService {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
      }
      return result;
-  
   }
 
 }

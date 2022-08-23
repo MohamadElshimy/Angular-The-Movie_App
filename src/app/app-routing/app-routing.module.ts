@@ -17,17 +17,6 @@ const appRoutes: Routes = [
     path: 'auth',
     component: AuthComponent
   },
-  // {
-  //   path: 'movies',
-  //   component: MoviesCatalogComponent,
-  //   canActivate: [AuthGuard],
-  //   children: [
-  //     {
-  //       path: ':id',
-  //       component: MovieDetailsComponent
-  //     }
-  //   ]
-  // },
   {
     path: 'movies',
     component: MoviesCatalogComponent,

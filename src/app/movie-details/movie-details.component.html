@@ -1,6 +1,6 @@
 <div class="movie-card">
     <div class="container" *ngIf="this.movie && this.movie.poster_path">
-        <a href="#"><img src={{getImage()}} alt="cover" class="cover" /></a>
+        <a><img src={{getImage()}} alt="cover" class="cover" /></a>
         <div class="hero" [ngStyle]="{'--featured-image': getUrl()}"> 
             <div class="details">
                 <div class="details_highlight">
@@ -62,11 +62,11 @@
                     <img src={{getCompanyImage(i)}} alt={{comp.name}} />
                     </a>
                     </span>
-                </div> <!-- end avatars -->
-            </div> <!-- end column2 -->
-        </div> <!-- end description --> 
-    </div> <!-- end container -->
-</div> <!-- end movie-card -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="loader" *ngIf="!this.movie || !this.movie.poster_path">
     <app-loading-spinner></app-loading-spinner>
