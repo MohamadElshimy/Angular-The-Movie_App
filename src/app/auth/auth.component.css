@@ -251,6 +251,7 @@ body {
 .content-w3ls {
     max-width: 500px;
     margin: 5.5em auto;
+    margin-bottom: 4.4em;
 }
 ul.links-unordered-list li.active a {
     background: rgba(255, 255, 255, 0.05);
@@ -410,7 +411,7 @@ form .field-group .wthree-field {
 	font-family: 'Mukta', sans-serif;
     font-size: 16px;
 	width:100%;
-	margin-top:10px;
+	margin-top:2.5%;
     letter-spacing: 2px;
     /* cursor: pointer; */
     transition: 0.5s all;
