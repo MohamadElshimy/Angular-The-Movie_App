@@ -1,8 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Movie } from '../shared/movie.model';
 import { MovieDetailed } from '../shared/movie-detailed.model';
+import { AuthService } from './auth.service';
 
 export interface MoviesResponseData {
   page: string;
@@ -16,33 +17,77 @@ export interface MoviesResponseData {
 })
 export class MoviesService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   fetchMoviesRequest(pageNumber: number){
     let searchParams = new HttpParams();
-    searchParams = searchParams.append('api_key','029dea97c6491c890795a485b2ebdbc0');
-    searchParams = searchParams.append('language','en-US');
+    // searchParams = searchParams.append('api_key','029dea97c6491c890795a485b2ebdbc0');
+    // searchParams = searchParams.append('language','en-US');
     searchParams = searchParams.append('page',pageNumber);
+
+    const userSession: {
+      email: string;
+      _token: string;
+      _tokenExpirationDate: string;
+    } = JSON.parse(localStorage.getItem('userSession')!);
+
+    const headers= new HttpHeaders()
+      .set('Authorization', 'Bearer '+userSession._token);
     return this.http
       .get<MoviesResponseData>(
-        'https://api.themoviedb.org/3/movie/top_rated',
+        // 'https://api.themoviedb.org/3/movie/top_rated',
+        'http://localhost:8080/movies/top_rated',
         {
-          params: searchParams
+          params: searchParams,
+          headers: headers
         }
       );
   }
 
   fetchMovieDetailsRequest(movie_id: string){
-    let searchParams = new HttpParams();
-    searchParams = searchParams.append('api_key','029dea97c6491c890795a485b2ebdbc0');
-    searchParams = searchParams.append('language','en-US');
-    searchParams = searchParams.append('append_to_response','videos');
+    // let searchParams = new HttpParams();
+    // searchParams = searchParams.append('api_key','029dea97c6491c890795a485b2ebdbc0');
+    // searchParams = searchParams.append('language','en-US');
+    // searchParams = searchParams.append('append_to_response','videos');
+
+    const userSession: {
+      email: string;
+      _token: string;
+      _tokenExpirationDate: string;
+    } = JSON.parse(localStorage.getItem('userSession')!);
+
+    const headers= new HttpHeaders()
+      .set('Authorization', 'Bearer ' + userSession._token);
 
     return this.http
       .get<MovieDetailed>(
-        `https://api.themoviedb.org/3/movie/${movie_id}`,
+        // `https://api.themoviedb.org/3/movie/${movie_id}`
+        `http://localhost:8080/movie/${movie_id}`
+        ,
         {
-          params: searchParams
+          // params: searchParams
+          headers: headers
+        }
+      );
+  }
+
+  updateMovieDetailsRequest(movie_id: string, new_budget: string){
+
+    const userSession: {
+      email: string;
+      _token: string;
+      _tokenExpirationDate: string;
+    } = JSON.parse(localStorage.getItem('userSession')!);
+
+    const headers= new HttpHeaders()
+      .set('Authorization', 'Bearer ' + userSession._token);
+
+    return this.http
+      .get<MovieDetailed>(
+        `http://localhost:8080/movie/${movie_id}/${new_budget}`
+        ,
+        {
+          headers: headers
         }
       );
   }

@@ -259,3 +259,13 @@ a[data-tooltip][data-placement="top"]::after {
   transform: -ms-translate(-50%, -50%);
   color:darkred;
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+}
+
+input[type=number] {
+  color: #000 !important;
+}

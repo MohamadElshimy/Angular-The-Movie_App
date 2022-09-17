@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from '../services/auth.service';
 
 import { MoviesService } from '../services/movies.service';
 import { MovieDetailed } from '../shared/movie-detailed.model';
@@ -19,7 +20,10 @@ export class MovieDetailsComponent implements OnInit {
 
   faPlay = faPlay;
 
-  constructor(private route: ActivatedRoute, private moviesService: MoviesService) { }
+  newBudget: string = '';
+
+  constructor(private route: ActivatedRoute, private moviesService: MoviesService, 
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -31,16 +35,36 @@ export class MovieDetailsComponent implements OnInit {
     .subscribe( responseData => {
       this.movie = responseData;
       // console.log(responseData);
-    });
+    },
+    () => {
+      this.authService.logout();
+    }
+    );
+  }
+
+  private updateMovieDetails(movie_id: string, new_budget: string){
+    this.moviesService.updateMovieDetailsRequest(movie_id, new_budget)
+    .subscribe( responseData => {
+      this.movie = responseData;
+      this.newBudget = "";
+    },
+    () => {
+      this.authService.logout();
+    }
+    );
+  }
+
+  onEdit() {
+    this.updateMovieDetails(this.id, this.newBudget);
   }
 
   getUrl(){
-    const urlString = this.movie.backdrop_path;
+    const urlString = this.movie.backdropPath;
     return `url('${this.imageLinkPrefix}${urlString}')`;
   }
 
   getImage(){
-    const urlString = this.movie.poster_path;
+    const urlString = this.movie.posterPath;
     return `${this.imageLinkPrefix}${urlString}`;
   }
 
@@ -53,7 +77,7 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   getCompanyImage(index: number){
-    const urlString = this.movie.production_companies[index].logo_path;
+    const urlString = this.movie.productionCompanies[index].logo_path;
     return `${this.imageLinkPrefix}${urlString}`;
   }
 

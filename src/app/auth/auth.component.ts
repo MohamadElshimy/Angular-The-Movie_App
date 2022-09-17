@@ -50,16 +50,18 @@ export class AuthComponent implements OnInit {
 
     this.isLoading = true;
 
-    let resData = this.authService.login(email, password, remainLoggedin);
-
-    if (resData.authenticated){
-      this.isLoading = false;
-      this.error = null!;
-      this.router.navigate(['/movies']);
-    }else{
-      this.error = resData.error!;
-      this.isLoading = false;
-    }
+    this.authService.login(email, password, remainLoggedin)
+      .subscribe(
+        ()  => {
+          this.isLoading = false;
+          this.error = null!;
+          this.router.navigate(['/movies']);;
+        },
+        () => {
+          this.error = "Invalid Username or Password";
+          this.isLoading = false;
+        }
+      );
 
     this.logininForm.reset();
   }

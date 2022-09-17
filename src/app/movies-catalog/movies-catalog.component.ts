@@ -34,9 +34,14 @@ export class MoviesCatalogComponent implements OnInit {
     this.moviesService.fetchMoviesRequest(pageNumber)
     .subscribe( responseData => {
       this.loadedMovies = this.loadedMovies.concat(responseData.results);
+      // console.log(this.loadedMovies);
       this.pageCounter++;
       this.isFetchingMore = false;
-    });
+      },
+      () => {
+        this.authService.logout();
+      }
+    );
   }
 
   onViewMore(){
@@ -45,18 +50,18 @@ export class MoviesCatalogComponent implements OnInit {
   }
 
   getUrl(index:number){
-    const urlString = this.loadedMovies[index].backdrop_path;
+    const urlString = this.loadedMovies[index].backdropPath;
     return `url('${this.imageLinkPrefix}${urlString}')`;
   }
 
   getImage(index:number){
-    const urlString = this.loadedMovies[index].poster_path;
+    const urlString = this.loadedMovies[index].posterPath;
     return `${this.imageLinkPrefix}${urlString}`;
   }
 
   getGenres(index:number){
     let genres ='';
-    for(let genre_id of this.loadedMovies[index].genre_ids){
+    for(let genre_id of this.loadedMovies[index].genreIds){
       genres += this.moviesService.getGenreById(+genre_id) + ', ';
     }
     genres = genres.slice(0, -2);
@@ -70,8 +75,10 @@ export class MoviesCatalogComponent implements OnInit {
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
     if (window.innerHeight + window.scrollY === document.body.scrollHeight) {
-      console.log('bottom');
-      this.onViewMore();
+      if(this.pageCounter<=40){
+        console.log('bottom');
+        this.onViewMore();
+      }
     }
   }
 

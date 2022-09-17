@@ -10,26 +10,28 @@
         </button>
     </div>
     <div class="movie_card" *ngFor="let movie of loadedMovies; let i = index" [routerLink]="['/movies', movie.id]">
-        <div class="info_section">
-            <div class="movie_header">
-                <img class="locandina" src={{getImage(i)}}/>
-                <h2>{{movie.title}}</h2>
-                <h4>
-                    {{movie.release_date.substring(0, 4)}}, {{movie.adult=='true'?'Adults only':'All ages'}}
-                </h4>
-                <span class="minutes">
-                    {{movie.vote_average}}
-                    <span class="fa fa-star checked"></span>
-                </span>
-                <p class="type">{{getGenres(i)}}</p>
+        <span>
+            <div class="info_section">
+                <div class="movie_header">
+                    <img class="locandina" src={{getImage(i)}}/>
+                    <h2>{{movie.title}}</h2>
+                    <h4>
+                        {{movie.releaseDate.substring(0, 4)}}, {{movie.adult=='true'?'Adults only':'All ages'}}
+                    </h4>
+                    <span class="minutes">
+                        {{movie.voteAverage}}
+                        <span class="fa fa-star checked"></span>
+                    </span>
+                    <p class="type">{{getGenres(i)}}</p>
+                </div>
+                <div class="movie_desc">
+                    <p class="text">
+                        {{movie.overview}}
+                    </p>
+                </div>
             </div>
-            <div class="movie_desc">
-                <p class="text">
-                    {{movie.overview}}
-                </p>
-            </div>
-        </div>
-        <div class="blur_back" [ngStyle]="{'background-image': getUrl(i)}" ></div>
+            <div class="blur_back" [ngStyle]="{'background-image': getUrl(i)}" ></div>
+        </span>
     </div>
     <!-- <button
     *ngIf="!isFetchingMore" 
